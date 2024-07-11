@@ -1,0 +1,91 @@
+#include <AFMotor.h>
+
+// Define motors
+AF_DCMotor motor1(1); // Motor connected to M1
+AF_DCMotor motor2(2); // Motor connected to M2
+AF_DCMotor motor3(3); // Motor connected to M3
+AF_DCMotor motor4(4); // Motor connected to M4
+
+char command;
+
+void setup() {
+  Serial.begin(9600);  // Initialize serial communication
+  // Set initial motor state
+  motor1.setSpeed(0);
+  motor2.setSpeed(0);
+  motor3.setSpeed(0);
+  motor4.setSpeed(0);
+  motor1.run(RELEASE);
+  motor2.run(RELEASE);
+  motor3.run(RELEASE);
+  motor4.run(RELEASE);
+}
+
+void loop() {
+  // Check if data is available on the serial port
+  if (Serial.available() > 0) {
+    command = Serial.read();
+
+    // Ensure motor state is correctly set based on the command
+    switch (command) {
+      case 'F': // Move Forward
+        motor1.setSpeed(180);  // Full speed
+        motor2.setSpeed(180);
+        motor3.setSpeed(180);
+        motor4.setSpeed(180);
+        motor1.run(FORWARD);
+        motor2.run(FORWARD);
+        motor3.run(FORWARD);
+        motor4.run(FORWARD);
+        break;
+
+      case 'B': // Move Backward
+        motor1.setSpeed(165);  // Full speed
+        motor2.setSpeed(165);
+        motor3.setSpeed(165);
+        motor4.setSpeed(165);
+        motor1.run(BACKWARD);
+        motor2.run(BACKWARD);
+        motor3.run(BACKWARD);
+        motor4.run(BACKWARD);
+        break;
+
+      case 'L': // Turn Left
+        motor1.setSpeed(150);  // Full speed
+        motor2.setSpeed(150);
+        motor3.setSpeed(150);
+        motor4.setSpeed(150);
+        motor1.run(BACKWARD);  // Opposite direction for left turn
+        motor2.run(BACKWARD);
+        motor3.run(FORWARD);
+        motor4.run(FORWARD);
+        break;
+
+      case 'R': // Turn Right
+        motor1.setSpeed(150);  // Full speed
+        motor2.setSpeed(150);
+        motor3.setSpeed(150);
+        motor4.setSpeed(150);
+        motor1.run(FORWARD);   // Opposite direction for right turn
+        motor2.run(FORWARD);
+        motor3.run(BACKWARD);
+        motor4.run(BACKWARD);
+        break;
+
+      case 'S': // Stop all motors
+        motor1.run(RELEASE);
+        motor2.run(RELEASE);
+        motor3.run(RELEASE);
+        motor4.run(RELEASE);
+        break;
+
+      default: // Unknown command, stop all motors as a safety measure
+        motor1.run(RELEASE);
+        motor2.run(RELEASE);
+        motor3.run(RELEASE);
+        motor4.run(RELEASE);
+        break;
+    }
+  }
+}
+
