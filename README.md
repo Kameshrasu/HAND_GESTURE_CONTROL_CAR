@@ -31,7 +31,7 @@ This project demonstrates a car controlled by hand gestures using an Arduino and
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/yourusername/HAND_GESTURE_CONTROL_CAR.git
+    git clone https://github.com/Kameshrasu/HAND_GESTURE_CONTROL_CAR.git
     cd HAND_GESTURE_CONTROL_CAR
     ```
 
