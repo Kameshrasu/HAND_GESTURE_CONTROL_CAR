@@ -1,0 +1,15 @@
+Hardware
+
+1) Arduino uno
+2) motor driver L293D
+3) dc motor - 04
+4) wheels - 4
+5) lithium ion battery 
+
+software 
+1) python 3.11
+2) Arduino IDLE (C++ CODE)
+
+ PYTHON MODULE
+1) OPENCV
+2) SERIAL 
